@@ -184,7 +184,7 @@ h1 {
     margin: 1.5rem 0 1.5rem 0;
   }
   .siteName {
-    font-size: 3rem;
+    font-size: 4vw;
     
     a {
         text-decoration: none;
@@ -198,7 +198,7 @@ h1 {
   }
 
   #tools {
-    font-size: 1.25rem;
+    font-size: 2vw;
 
     a {
         text-decoration: none;
@@ -233,32 +233,34 @@ h1 {
 
   .upgrades, .reviews {
     width: 50%;
-    font-size: 1rem;
+    font-size: 2vw;
     padding-left: 5px;
     padding-right: 5px;
   }
 
-  .reviews {
-
-    ul {
-      margin-top: 1rem;
-      margin-bottom: 1rem;
-    }
+  .reviews ul {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
   }
 
   .hero-text{
-    width: 20vw;
-    height: calc(25vw);
-    font-size: 3vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 25vw;
+    height: 20vw;
+    font-size: 2vw;
+    padding-left: 1rem;
   }
 
   .button {
     font-size: 3vw;
+    width: fit-content;
   }
 }
 
-@media screen and (min-width: 815px) {
+/* @media screen and (min-width: 815px) {
   .upgrades, .reviews {
     font-size: 2rem;
   }
-}
+} */
