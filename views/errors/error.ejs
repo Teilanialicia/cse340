@@ -1,0 +1,7 @@
+<% if (title) { %>
+<h1><%= title %></h1>
+<% } else {
+  res.redirect('/')
+} %>
+<h2>The page you're looking for must have driven away! Click <a href="/">here</a> to catch up to it!</h2>
+<%- message %>
