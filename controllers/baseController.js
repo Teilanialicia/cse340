@@ -6,4 +6,10 @@ baseController.buildHome = async function(req, res){
   res.render("index", {title: "Home", nav})
 }
 
-module.exports = baseController
+baseController.throwError = async function(req, res, next) {
+  const error = new Error("500 error");
+  error.status = 500;
+  next(error);
+}
+
+module.exports = baseController;

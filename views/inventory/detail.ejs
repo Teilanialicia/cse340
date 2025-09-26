@@ -1,0 +1,19 @@
+<% if (title) { %>
+<h1><%= title %></h1>
+<% } else {
+  res.redirect('/')
+} %>
+<div class="container">
+    <div class="image">
+        <img class="vehicleImage" src="<%- vehicleImage %>" alt="Image of vehicle product">
+    </div>
+    <div class="details">
+        <h2><%- vehicleName %> Details</h2>
+        <ul>
+            <li><span class="title">Price: $<%- vehiclePrice %></span></li>
+            <li><span class="title">Description: </span><%- vehicleDescription %></li>
+            <li><span class="title">Color: </span><%- vehicleColor %></li>
+            <li><span class="title">Miles: </span><%- vehicleMiles %></li>
+        </ul>
+    </div>
+</div>
