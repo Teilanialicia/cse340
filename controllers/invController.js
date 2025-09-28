@@ -16,6 +16,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
     title: className + " vehicles",
     nav,
     grid,
+    errors: null,
   })
 }
 
@@ -48,7 +49,35 @@ invCont.buildDetailsViewBy = async function (req, res, next) {
     vehicleMiles: vehicleMiles,
     vehicleImage: vehicleImage,
     nav: nav,
+    errors: null,
   })
+}
+
+invCont.serveVehicleManagement = async function(req, res, next){
+  let nav = await utilities.getNav()
+  res.render("./inventory/management", {
+    title: "Vehicle Management",
+    nav: nav,
+    errors: null,
+  });
+}
+
+invCont.buildAddClassification = async function(req, res, next){
+  let nav = await utilities.getNav()
+  res.render("./inventory/add-classification", {
+    title: "Add Classification",
+    nav: nav,
+    errors: null,
+  });
+}
+
+invCont.buildAddVehicle = async function(req, res, next){
+  let nav = await utilities.getNav()
+  res.render("./inventory/add-inventory", {
+    title: "Add Vehicle",
+    nav: nav,
+    errors: null,
+  });
 }
 
 
