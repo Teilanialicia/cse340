@@ -61,4 +61,37 @@ accountCont.registerAccount = async function (req, res) {
   }
 }
 
+/* ****************************************
+*  Process Registration
+* *************************************** */
+accountCont.loginAccount = async function (req, res) {
+  let nav = await utilities.getNav()
+  const { account_email, account_password } = req.body
+
+  const regResult = await accountModel.loginAccount(
+    account_email,
+    account_password
+  )
+
+  if (regResult > 0) {
+    req.flash(
+      "notice",
+      `Congratulations, you\'ve logged in!`
+    )
+    res.status(201).render("./", {
+      title: "Home",
+      nav,
+      errors: null,
+    })
+  } else {
+    req.flash("notice", "Sorry, the login failed.")
+    res.status(501).render("account/login", {
+      title: "Login",
+      nav,
+      account_email,
+      errors: null,
+    })
+  }
+}
+
 module.exports = accountCont;

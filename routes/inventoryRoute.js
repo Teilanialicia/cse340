@@ -2,6 +2,8 @@
 const express = require("express")
 const router = new express.Router() 
 const invController = require("../controllers/invController")
+const invValidate = require("../utilities/inventory-validation")
+const Util = require("../utilities/index")
 
 // Route to build inventory by classification view
 router.get("/type/:classificationId", invController.buildByClassificationId);
@@ -15,7 +17,21 @@ router.get("/", invController.serveVehicleManagement);
 // Route to display classification add page
 router.get("/add-classification", invController.buildAddClassification);
 
+// Route to add a classification to the database
+router.post("/add-classification",
+    invValidate.classificationRules(),
+    invValidate.checkClassificationData,
+    Util.handleErrors(invController.addClassification)
+)
+
 // Route to display vehicle (inventory) add page
 router.get("/add-inventory", invController.buildAddVehicle);
+
+// Route to add a vehicle (inventory) to the database
+router.post("/add-inventory", 
+    invValidate.inventoryRules(),
+    invValidate.checkInventoryData,
+    Util.handleErrors(invController.addVehicle)
+)
 
 module.exports = router;

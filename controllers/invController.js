@@ -53,7 +53,7 @@ invCont.buildDetailsViewBy = async function (req, res, next) {
   })
 }
 
-invCont.serveVehicleManagement = async function(req, res, next){
+invCont.serveVehicleManagement = async function(req, res){
   let nav = await utilities.getNav()
   res.render("./inventory/management", {
     title: "Vehicle Management",
@@ -62,7 +62,7 @@ invCont.serveVehicleManagement = async function(req, res, next){
   });
 }
 
-invCont.buildAddClassification = async function(req, res, next){
+invCont.buildAddClassification = async function(req, res){
   let nav = await utilities.getNav()
   res.render("./inventory/add-classification", {
     title: "Add Classification",
@@ -71,14 +71,53 @@ invCont.buildAddClassification = async function(req, res, next){
   });
 }
 
-invCont.buildAddVehicle = async function(req, res, next){
+invCont.buildAddVehicle = async function(req, res){
   let nav = await utilities.getNav()
+  let data = await invModel.getClassifications();
+  classification_options = data.rows;
   res.render("./inventory/add-inventory", {
     title: "Add Vehicle",
     nav: nav,
     errors: null,
+    classification_options,
   });
 }
 
+invCont.addVehicle = async function(req, res, next){
+  const { classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color } = req.body;
+  const result = await invModel.insertInventory(classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color);
+
+  if (result){
+    req.flash(
+      "notice",
+      `You've successfully added a new vehicle.`
+    )
+    let nav = await utilities.getNav()
+    res.render("./inventory/management", {
+      title: "Vehicle Management",
+      nav: nav,
+      errors: null,
+    });
+
+  }
+}
+
+invCont.addClassification = async function(req, res) {
+  let nav = await utilities.getNav();
+  const { classification_name } = req.body;
+  const result = invModel.insertClassification(classification_name);
+  if (result){
+    req.flash(
+      "notice",
+      `You've successfully added a new classification.`
+    )
+    let nav = await utilities.getNav()
+    res.render("./inventory/management", {
+      title: "Vehicle Management",
+      nav: nav,
+      errors: null,
+    });
+  }
+}
 
 module.exports = invCont

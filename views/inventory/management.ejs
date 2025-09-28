@@ -4,7 +4,17 @@
   res.redirect('/')
 } %>
 
-<div class="container padding-4 font-2 gap-2">
+<%- messages() %>
+
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
+
+<div class="container-col padding-4 font-2 gap-2">
     <a href="/inv/add-classification">Add New Classification</a>
     <a href="/inv/add-inventory">Add New Vehicle</a>
 </div>

@@ -4,6 +4,63 @@
   res.redirect('/')
 } %>
 
-<form action="add-classification.ejs" method="post">
-    
-</form>
+<%- messages() %>
+
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
+
+<div class="form-container">
+  <form class="form" id="loginForm" action="/inv/add-inventory" method="post">
+    <div class="container-col">
+      <label for="classification">Classification:</label>
+      <select required name="classification_id" id="classification">
+        <option label="" value=""></option>
+        <% classification_options.forEach(option => { %>
+          <option value="<%= option.classification_id %>"><%= option.classification_name %></option>
+        <%}); %>
+      </select>
+    </div>
+    <div>
+      <label for="make">Make:</label>
+      <input required type="text" name="inv_make" id="make" value="<%= locals.inv_make %>">
+    </div>
+    <div>
+      <label for="model">Model:</label>
+      <input required type="text" name="inv_model" id="model" value="<%= locals.inv_model %>">
+    </div>
+    <div>
+      <label for="description">Description:</label>
+      <textarea required name="inv_description" id="description"><%= locals.inv_description %></textarea>
+    </div>
+    <div>
+      <label for="image">Image Path:</label>
+      <input required type="text" name="inv_image" id="image" value="/images/vehicles/no-image.png">
+    </div>
+    <div>
+      <label for="thumbnail">Thumbnail Path:</label>
+      <input required type="text" name="inv_thumbnail" id="thumbnail" value="/images/vehicles/no-image.png">
+    </div>
+    <div>
+      <label for="price">Price:</label>
+      <input required type="number" name="inv_price" id="price" value="<%= locals.inv_price %>">
+    </div>
+    <div>
+      <label for="year">Year:</label>
+      <input required type="number" name="inv_year" id="year" value="<%= locals.inv_year %>">
+    </div>
+    <div>
+      <label for="miles">Miles:</label>
+      <input required type="number" name="inv_miles" id="miles" value="<%= locals.inv_miles %>">
+    </div>
+    <div>
+      <label for="color">Color:</label>
+      <input required type="text" name="inv_color" id="color" value="<%= locals.inv_color %>">
+    </div>
+    <input class="submit-button" type="submit" value="Login">
+  </form>
+</div>

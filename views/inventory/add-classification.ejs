@@ -3,3 +3,24 @@
 <% } else {
   res.redirect('/')
 } %>
+
+<%- messages() %>
+
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
+
+<div class="form-container">
+  <form class="form" id="addClassificationForm" action="/inv/add-classification" method="post">
+    <h2>*Required Field</h2>
+    <div>
+      <label for="email">*Classification Name:</label>
+      <input required type="text" name="classification_name" id="classification_name" value="<%= locals.classification_name %>">
+    </div>
+    <input class="submit-button" type="submit" value="Login">
+  </form>
+</div>
