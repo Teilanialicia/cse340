@@ -41,7 +41,7 @@ validate.registationRules = () => {
         .trim()
         .notEmpty()
         .isStrongPassword({
-            minLength: 12,
+            minLength: 5,
             minLowercase: 1,
             minUppercase: 1,
             minNumbers: 1,

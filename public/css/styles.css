@@ -38,7 +38,7 @@ nav ul {
   padding: 0;
 }
 
-ul li a {
+nav a {
   font-size: 1.25rem;
   color: white;
   text-decoration: none;
@@ -239,7 +239,7 @@ h1 {
 }
 
 .form .submit-button {
-  width: 80px;
+  width: fit-content;
   border-radius: 10px;
 }
 

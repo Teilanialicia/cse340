@@ -17,6 +17,23 @@ router.get("/", invController.serveVehicleManagement);
 // Route to display classification add page
 router.get("/add-classification", invController.buildAddClassification);
 
+
+router.get("/getInventory/:classification_id",
+    Util.handleErrors(invController.getInventoryJSON)
+)
+
+// Route to edit inventory
+router.get('/edit/:inv_id',
+    Util.handleErrors(invController.editInventory)
+)
+
+// Route to edit inventory
+router.post('/update',
+    invValidate.newInventoryRules(),
+    invValidate.checkUpdateInventoryData,
+    Util.handleErrors(invController.updateInventory)
+)
+
 // Route to add a classification to the database
 router.post("/add-classification",
     invValidate.classificationRules(),
@@ -31,7 +48,7 @@ router.get("/add-inventory", invController.buildAddVehicle);
 router.post("/add-inventory", 
     invValidate.inventoryRules(),
     invValidate.checkInventoryData,
-    Util.handleErrors(invController.addVehicle)
+    Util.handleErrors(invController.addInventory)
 )
 
 module.exports = router;

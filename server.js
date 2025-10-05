@@ -20,6 +20,9 @@ const utilities = require("./utilities/index");
 const session = require("express-session")
 const pool = require('./database/')
 
+// Cookies yay!
+const cookieParser = require('cookie-parser');
+
 
 /* ***********************
  * Local Server Information
@@ -51,6 +54,8 @@ app.use(function(req, res, next){
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(cookieParser())
+app.use(utilities.checkJWTToken)
 
 
 /*************************

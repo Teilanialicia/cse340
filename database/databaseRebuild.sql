@@ -247,3 +247,11 @@ UPDATE inventory
 SET inv_image = REPLACE(inv_image, '/images', '/images/vehicles'),
 	inv_thumbnail = REPLACE(inv_thumbnail, '/images', '/images/vehicles');
 
+
+UPDATE public.account
+	SET account_type = 'Employee'
+	WHERE account_id = 7;
+
+UPDATE public.account
+	SET account_type = 'Admin'
+	WHERE account_id = 8;

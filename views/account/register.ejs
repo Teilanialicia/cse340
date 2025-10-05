@@ -29,10 +29,13 @@
             <input required type="email" name="account_email" id="email" value="<%= locals.account_email %>">
         </div>
         <div>
-            <label for="password">Password:</label>
+            <label for="password">*Password: 
+
+            </label>
             <input required type="password" name="account_password" id="password" 
-                pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+                pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{5,}$">
         </div>
         <input class="submit-button" type="submit" value="Register">
+        <span>* Should be 5 characters long with at least one uppercase and lowercase letter, one number, and one special character</span>
     </form>
 </div>

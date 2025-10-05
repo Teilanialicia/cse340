@@ -15,7 +15,7 @@
 <% } %>
 
 <div class="form-container">
-  <form class="form" id="loginForm" action="/inv/add-inventory" method="post">
+  <form class="form" id="updateForm" action="/inv/update" method="post">
     <div class="container-col">
       <label for="classification">Classification:</label>
       <select required name="classification_id" id="classification">
@@ -62,6 +62,12 @@
       <label for="color">Color:</label>
       <input required type="text" name="inv_color" id="color" value="<%= locals.inv_color %>">
     </div>
-    <input class="submit-button" type="submit" value="Login">
+    <input class="submit-button" type="submit" disabled value="Update Vehicle">
+    <input type="hidden" name="inv_id"
+      <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+      <% } %>>
+
   </form>
 </div>
+
+<script src="../../js/inv-update.js"></script>
